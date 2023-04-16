@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/mike/robot_ws/install/twist_mux/include/**",
+        "/home/mike/robot_ws/install/kobuki_velocity_smoother/include/**",
+        "/home/mike/robot_ws/install/cmd_vel_mux/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/mike/robot_ws/src/cmd_vel_mux/include/**",
+        "/home/mike/robot_ws/src/kobuki_velocity_smoother/include/**",
+        "/home/mike/robot_ws/src/twist_mux/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

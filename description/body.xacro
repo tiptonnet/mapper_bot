@@ -1,0 +1,59 @@
+    <!-- BODY BASE LINK -->
+
+    <joint name="body_base_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="body_base"/>
+        <origin xyz="-0.1 0 0.07"/>
+    </joint>
+
+    <link name="body_base">
+        <visual>
+            <origin xyz="0.25 0 0"/>
+            <geometry>
+                <cylinder radius="0.2921" length="0.1778"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0.25 0 0"/>
+            <geometry>
+                <cylinder radius="0.2921" length="0.1778"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.1778" radius="0.2921">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+    <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+    </gazebo>  
+
+    <!-- BODY BASE LINK -->
+
+    <joint name="body_joint" type="fixed">
+        <parent link="chassis"/>
+        <child link="body"/>
+        <origin xyz="-0.1 0 0.1"/>
+    </joint>
+
+    <link name="body">
+        <visual>
+            <origin xyz="0.25 0 0.42"/>
+            <geometry>
+                <cylinder radius="0.2286" length="0.7366"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0.25 0 0.42"/>
+            <geometry>
+                <cylinder radius="0.2286" length="0.7366"/>
+            </geometry>
+        </collision>
+        <xacro:inertial_cylinder mass="0.35" length="0.7366" radius="0.2286">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_cylinder>
+    </link>
+    <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
