@@ -1,10 +1,27 @@
 from flask import Flask, render_template, Response,request,redirect,jsonify
 import cv2
- 
-# Flask constructor takes the name of
-# current module (__name__) as argument.
+import rclpy
+from rclpy.node import Node
+from rclpy.qos import QoSDurabilityPolicy, QoSHistoryPolicy, QoSReliabilityPolicy
+from rclpy.qos import QoSProfile
+# msgs needed for /cmd_vel
+from geometry_msgs.msg import Twist, Vector3
+from sensor_msgs.msg import LaserScan
+from rclpy.qos import qos_profile_sensor_data
+import numpy as np
+import sys
+import time
+import os 
+
 app = Flask(__name__)
- 
+
+def set_vel(vx, vy, vz, avx=0, avy=0, avz=0):
+    """
+    Send comand velocities. Must be in GUIDED mode. Assumes angular
+    velocities are zero by default.
+    """
+    os.system("ros2 topic pub --once /diff_cont/cmd_vel_unstamped geometry_msgs/msg/Twist \"{linear: {x: "+str(vx)+", y: "+str(vy)+", z: "+str(vz)+"}, angular: {x: "+str(avx)+", y: "+str(avy)+", z: "+str(avz)+"}}\"")
+
 @app.route('/', methods=["GET"])
 def index():
     #settings = get_settings()
@@ -21,6 +38,21 @@ def video_feed(w,h):
 
 
 
+@app.route('/command/<int:a>', methods=["GET"])
+def Test(a):
+    print("Executing command: "+str(a))
+    if a == 0: # Forward
+        set_vel(1.0, 0.0, 0.0, 0.0, 0.0,0.0)
+    if a == 2: #Left
+        set_vel(0.0, 0.0, 0.0, 0.0, 0.0,1)
+    if a == 3: #Right
+        set_vel(0.0, 0.0, 0.0, 0.0, 0.0,-1)
+    if a == 6: #Stop
+        set_vel(0.0, 0.0, 0.0, 0.0, 0.0,0)
+    if a == 1: #Reverse
+        set_vel(-1.0, 0.0, 0.0, 0.0, 0.0,0)
+
+    return "OK"
 
 def gen_frames(w,h):
     firstFrame = None
@@ -36,7 +68,7 @@ def gen_frames(w,h):
             frame = cv2.imread("static/images/NoVideo.jpg")
         resize = cv2.resize(frame, (w, h))
         font = cv2.FONT_HERSHEY_PLAIN
-        #cv2.putText(resize,"Buster 1",(120,10),font,0.9,(0,0,255))
+        cv2.putText(resize,"MapperBot",(120,10),font,0.9,(0,255,0))
         #cv2.putText(resize,"Lat: "+str(lat),(10,150),font,1,(0,0,255))
         #cv2.putText(resize,"Lon: "+str(lon),(10,170),font,1,(0,0,255))
         #cv2.putText(resize,"Elv: "+str(elv),(10,190),font,1,(0,0,255))
