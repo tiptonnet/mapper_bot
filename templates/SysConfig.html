@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <h1>System Configuration</h1>
+    <form method="post" action="/SaveSettings">
+        <input type="hidden" name="id" id="id" value="{{data[0]._id}}">
+        <div class="form-group">
+            <label for="SetBearing">Set a Bearing: False for none, float bearing to set bearing</label>
+            <input type="text" class="form-control" name="SetBearing" id="SetBearing" value="{{data[0].SetBearing}}">
+        </div>
+        <div class="form-group">
+            <label for="fll_sonar_min">Front Left Lower Sonar Distance</label>
+            <input type="text" class="form-control" name="fll_sonar_min" id="fll_sonar_min" value="{{data[0].fll_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="fcl_sonar_min">Front Center Lower Sonar Distance</label>
+            <input type="text" class="form-control" name="fcl_sonar_min" id="fcl_sonar_min" value="{{data[0].fcl_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="frl_sonar_min">Front Center Lower Sonar Distance</label>
+            <input type="text" class="form-control" name="frl_sonar_min" id="frl_sonar_min" value="{{data[0].frl_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="frl_sonar_min">Front Center Lower Sonar Distance</label>
+            <input type="text" class="form-control" name="frl_sonar_min" id="frl_sonar_min" value="{{data[0].frl_sonar_min}}">
+        </div>
+
+        <div class="form-group">
+            <label for="flu_sonar_min">Front Left Upper Sonar Distance</label>
+            <input type="text" class="form-control" name="flu_sonar_min" id="flu_sonar_min" value="{{data[0].flu_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="fcu_sonar_min">Front Center Upper Sonar Distance</label>
+            <input type="text" class="form-control" name="fcu_sonar_min" id="fcu_sonar_min" value="{{data[0].fcu_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="fru_sonar_min">Front Right Upper Sonar Distance</label>
+            <input type="text" class="form-control" name="fru_sonar_min" id="fru_sonar_min" value="{{data[0].fru_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="rll_sonar_min">Rear Left Lower Sonar Distance</label>
+            <input type="text" class="form-control" name="rll_sonar_min" id="rll_sonar_min" value="{{data[0].rll_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="rcl_sonar_min">Rear Center Lower Sonar Distance</label>
+            <input type="text" class="form-control" name="rcl_sonar_min" id="rcl_sonar_min" value="{{data[0].rcl_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="rrl_sonar_min">Rear Right Lower Sonar Distance</label>
+            <input type="text" class="form-control" name="rrl_sonar_min" id="rrl_sonar_min" value="{{data[0].rrl_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="rlu_sonar_min">Rear Left Upper Sonar Distance</label>
+            <input type="text" class="form-control" name="rlu_sonar_min" id="rlu_sonar_min" value="{{data[0].rlu_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="rcu_sonar_min">Rear Center Upper Sonar Distance</label>
+            <input type="text" class="form-control" name="rcu_sonar_min" id="rcu_sonar_min" value="{{data[0].rcu_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="rru_sonar_min">Rear Right Upper Sonar Distance</label>
+            <input type="text" class="form-control" name="rru_sonar_min" id="rru_sonar_min" value="{{data[0].rru_sonar_min}}">
+        </div>
+        <div class="form-group">
+            <label for="pf_mode">People Mode: 0 = Fallow, 1 = Observer, 2 = Fallow and Observe</label>
+            <input type="text" class="form-control" name="pf_mode" id="pf_mode" value="{{data[0].pf_mode}}">
+        </div>
+        <div class="form-group">
+            <label for="pf_stop">People Fallow Stop Distance</label>
+            <input type="text" class="form-control" name="pf_stop" id="pf_stop" value="{{data[0].pf_stop}}">
+        </div>
+        <div class="form-group">
+            <label for="pf_go">People Fallow Go Distance</label>
+            <input type="text" class="form-control" name="pf_go" id="pf_go" value="{{data[0].pf_go}}">
+        </div>
+        <div class="form-group">
+            <label for="pf_left">People Fallow Left Distance</label>
+            <input type="text" class="form-control" name="pf_left" id="pf_left" value="{{data[0].pf_left}}">
+        </div>
+        <div class="form-group">
+            <label for="pf_right">People Fallow Right Distance</label>
+            <input type="text" class="form-control" name="pf_right" id="pf_right" value="{{data[0].pf_right}}">
+        </div>
+        <div class="form-group">
+            <label for="gps_align_n">Align North (Aligns itself to point North on startup)</label>
+            <input type="text" class="form-control" name="gps_align_n" id="gps_align_n" value="{{data[0].gps_align_n}}">
+        </div>
+        <div class="form-group">
+            <label for="gps_home">Home (Lat,Lon of Home location)</label>
+            <input type="text" class="form-control" name="gps_home" id="gps_home" value="{{data[0].gps_home}}">
+        </div>
+        <div class="form-group">
+            <label for="vital_min_chg">Minimum Battery Voltage to go home and charge</label>
+            <input type="text" class="form-control" name="vital_min_chg" id="vital_min_chg" value="{{data[0].vital_min_chg}}">
+        </div>
+        <div class="form-group">
+            <label for="vital_max_mtrA">Max Motor Amps (Amp draw on motors to indicate stuck)</label>
+            <input type="text" class="form-control" name="vital_max_mtrA" id="vital_max_mtrA" value="{{data[0].vital_max_mtrA}}">
+        </div>
+        <div class="form-group">
+            <label for="oa_large">Minimum Distance To Large Objects (Vehicles, Walls...)</label>
+            <input type="text" class="form-control" name="oa_large" id="oa_large" value="{{data[0].oa_large}}">
+        </div>
+        <div class="form-group">
+            <label for="oa_medium">Minimum Distance To Medium Objects (People,Animals...)</label>
+            <input type="text" class="form-control" name="oa_medium" id="oa_medium" value="{{data[0].oa_medium}}">
+        </div>
+        <div class="form-group">
+            <label for="oa_small">Minimum Distance To Small Objects (Small animals,stones...)</label>
+            <input type="text" class="form-control" name="oa_small" id="oa_small" value="{{data[0].oa_small}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</body>
+
+</html>

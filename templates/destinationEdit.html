@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <h1>Destination</h1>
+    <form method="post" action="/destinationUpdate">
+        <input type="hidden" name="dest_id" id="dest_id" value="{{data[0]._id}}">
+        <div class="form-group">
+            <label for="dest_name">Name</label>
+            <input type="text" class="form-control" name="dest_name" id="dest_name" value="{{data[0].dest_name}}">
+        </div>
+        <div class="form-group">
+            <label for="dest_lat">Latitude</label>
+            <input type="text" class="form-control" name="dest_lat" id="dest_lat" value="{{data[0].dest_lat}}">
+        </div>
+        <div class="form-group">
+            <label for="dest_lon">Longitude</label>
+            <input type="text" class="form-control" name="dest_lon" id="dest_lon" value="{{data[0].dest_lon}}">
+        </div>
+        <div class="form-group">
+            <label for="dest_visits">Visits</label>
+            <input type="text" class="form-control" name="dest_visits" id="dest_visits" value="{{data[0].dest_visits}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</body>
+
+</html>

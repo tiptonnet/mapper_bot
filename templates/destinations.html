@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="table-responsive text-nowrap">
+        <form name="SearchForm" method="post" action="/Searchprofile/{{p}}">
+            Search: <input type="text" name="qry"> <button type="submit">Search</button> Status
+        </form>
+        {% if data != None: %}
+        <table class="table table-striped">
+            <thead>
+                <thead>
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="/destinationNew"><img src="/static/images/plus_new_512.png" title="New" width="32px" height="32px"></a>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Latitude</th>
+                        <th scope="col">Longitude</th>
+                        <th scope="col">Visits</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for Item in data %}
+                    <tr>
+                        <th scope="row">{{Item._id}}</th>
+                        <td>{{Item.dest_name}}</td>
+                        <td>{{Item.dest_lat}}</td>
+                        <td>{{Item.dest_lon}}</td>
+                        <td>{{Item.dest_visits}}</td>
+                        <td>
+                            <a href="/destinationEdit/{{Item._id}}"><img title="Edit" width="24px" height="24px" src="/static/images/pencil-14.png"></a> |
+                            <a href="#"><img title="Delete" width="24px" height="24px" src="/static/images/clearall-icon.png" onclick="ConfirmDelete('{{Item._id}}','{{Item.dest_name}}')"></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+        </table>
+        {% else %}
+        <div style="font-size: larger; padding-left: 400px; padding-top: 50px;"> No records found </div>
+        {% endif %}
+    </div>
+    <script>
+        function ConfirmDelete(id, name) {
+            if (confirm("Are you sure you want to Delete: " + name + "? This is permanent and can not be restored")) {
+                window.location.href = "/DeleteDestination/" + id + "/destinations"
+            }
+        }
+    </script>
+</body>
+
+</html>

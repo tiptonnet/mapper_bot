@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <script src="/static/jquery-3.5.1.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body onKeydown="DoSomething(event)" style="background-color: black; color: white;">
+    <div id="responseDisplay">Messages</div>
+    <div id="GPS_display">GPS</div>
+    <script type="text/javascript">
+        function DoSomething(event) {
+            var K = event.which;
+            if (K == 104) {
+                toggle(0)
+            }
+            if (K == 98) {
+                toggle(1)
+            }
+            if (K == 100) {
+                toggle(2)
+            }
+            if (K == 102) {
+                toggle(3)
+            }
+            if (K == 101) {
+                toggle(6)
+            }
+            if (K == 103) {
+                toggle(4)
+            }
+            if (K == 105) {
+                toggle(5)
+            }
+            if (K == 38) {
+                //Speed up
+                speed(1,10)
+            }
+            if (K == 40) {
+                //Speed down
+                speed(0,10)
+            }
+            document.getElementById("responseDisplay").innerHTML = event.which;
+        }
+        //setInterval(GPSdata, 500);
+
+        function GPSdata() {
+            gps()
+                //$('iframe').attr('src', "/static/gps.txt?d=" + new Date());
+        }
+    </script>
+
+    <p>Destination</p>
+    Lat: <input type="text" id="ToLat" name="ToLat"><br> Lon: <input type="text" id="ToLon" name="ToLon"><br>
+    <button type="button" id="SetCourse" name="SubCourse" value="Set Course" onclick="SetBearing()">Set Course</button>
+    <p>
+        <img style="margin:50px; width:600px; height: 400px;" title="Buster Video" src="http://127.0.0.1:5000/video_feed/400/600">
+    </p>    
+    <button style="width:150px; height:150px; margin-left:182px;" name="frwrd" value="Forward" onclick="toggle(0)" touchend="toggle(6)" touchstart="toggle(0)">Forward</button><br>
+    <button style="width:150px; height:150px;" name="left" value="Left" onclick="toggle(2)">Left</button>
+    <button style="width:200px; height:200px;" name="stop" value="Stop" onclick="toggle(6)">STOP</button>
+    <button style=" width:150px; height:150px;" name="right" value="Right" onclick="toggle(3)">Right</button><br>
+
+    <button style="width:150px; height:150px; margin-left:25px;" name="lspin" value="Left Spin" onclick="toggle(4)">Spin Left</button>
+    <button style="width:150px; height:150px;" name="rev" value="Reverse" onclick="toggle(1)">Reverse</button>
+    <button style="width:150px; height:150px;" name="rspin" value="Right Spin" onclick="toggle(5)">Spin Right</button>
+    <br>
+    <button style = "width:60px; height:60px;" type="button" id="SetSpeed0" name="setSpeed0" onclick="speed(0)">Slow Crawl</button>
+    <button style = "width:60px; height:60px;" type="button" id="SetSpeed1" name="setSpeed1" onclick="speed(1)">Crawl</button>
+    <button style = "width:60px; height:60px;" type="button" id="SetSpeed2" name="setSpeed2" onclick="speed(2)">Slow</button>
+    <button style = "width:60px; height:60px;" type="button" id="SetSpeed3" name="setSpeed3" onclick="speed(3)">Normal</button>
+    <button style = "width:60px; height:60px;" type="button" id="SetSpeed4" name="setSpeed4" onclick="speed(4)">Run</button>
+    <br>
+    <button style = "width:60px; height:60px;" type="button" id="SetCop" name="SetCop" onclick="toggle(12)">Cop Mode</button>
+    <button style = "width:60px; height:60px;" type="button" id="redgreen" name="redgreen" onclick="toggle(13)">Red Green</button>
+    <button style = "width:60px; height:60px;" type="button" id="redon" name="redon" onclick="toggle(14)">Red On</button>
+    <button style = "width:60px; height:60px;" type="button" id="redoff" name="redoff" onclick="toggle(15)">Red Off</button>
+    <button style = "width:60px; height:60px;" type="button" id="greenon" name="greenon" onclick="toggle(16)">Green On</button>
+    <button style = "width:60px; height:60px;" type="button" id="greenoff" name="greenoff" onclick="toggle(17)">Green Off</button>
+    <button style = "width:60px; height:60px;" type="button" id="blueon" name="blueon" onclick="toggle(18)">Blue On</button>
+    <button style = "width:60px; height:60px;" type="button" id="blueoff" name="blueoff" onclick="toggle(19)">Blue Off</button>
+</body>
+<script>
+    function toggle(a) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    console.log(this.responseText)
+                    document.getElementById("responseDisplay").innerHTML = this.responseText
+                }
+            }
+        };
+        xhttp.open("GET", "/command/" + a, true);
+        xhttp.send();
+    }
+
+    //$('#frmFile').attr('src', "/static/gps.txt?d=" + new Date());
+    function speed(ud,spd) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    console.log(this.responseText)
+                    document.getElementById("responseDisplay").innerHTML = this.responseText
+                }
+            }
+        };
+        xhttp.open("GET", "/speed/" + ud+"/"+spd, true);
+        xhttp.send();
+    }
+
+    function gps() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    console.log(this.responseText)
+                    document.getElementById("GPS_display").innerHTML = this.responseText
+                }
+            }
+        };
+        xhttp.open("GET", "/Getgps", true);
+        xhttp.send();
+    }
+
+    function SetBearing() {
+        lat = document.getElementById("ToLat").value;
+        lon = document.getElementById("ToLon").value;
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                if (this.status == 200) {
+                    console.log(this.responseText);
+                    document.getElementById("GPS_display").innerHTML = this.responseText;
+                }
+            }
+        };
+        
+        xhttp.open("POST", "/SetCourse", true);
+	xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhttp.send('ToLat='+lat+'&ToLon='+lon);
+    }
+</script>
+
+</html>
