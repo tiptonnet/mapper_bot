@@ -12,6 +12,7 @@ import numpy as np
 import sys
 import time
 import os 
+from commands import SendCommands
 
 app = Flask(__name__)
 
@@ -42,7 +43,8 @@ def video_feed(w,h):
 def Test(a):
     print("Executing command: "+str(a))
     if a == 0: # Forward
-        set_vel(1.0, 0.0, 0.0, 0.0, 0.0,0.0)
+        SendCommands.set_vel(1.0, 0.0, 0.0, 0.0, 0.0,0.0)
+        #set_vel(1.0, 0.0, 0.0, 0.0, 0.0,0.0)
     if a == 2: #Left
         set_vel(0.0, 0.0, 0.0, 0.0, 0.0,1)
     if a == 3: #Right

@@ -12,7 +12,6 @@
 
 <body onKeydown="DoSomething(event)" style="background-color: black; color: white;">
     <div id="responseDisplay">Messages</div>
-    <div id="GPS_display">GPS</div>
     <script type="text/javascript">
         function DoSomething(event) {
             var K = event.which;
@@ -49,15 +48,7 @@
         }
         //setInterval(GPSdata, 500);
 
-        function GPSdata() {
-            gps()
-                //$('iframe').attr('src', "/static/gps.txt?d=" + new Date());
-        }
     </script>
-
-    <p>Destination</p>
-    Lat: <input type="text" id="ToLat" name="ToLat"><br> Lon: <input type="text" id="ToLon" name="ToLon"><br>
-    <button type="button" id="SetCourse" name="SubCourse" value="Set Course" onclick="SetBearing()">Set Course</button>
     <p>
         <img style="margin:50px; width:600px; height: 400px;" title="Buster Video" src="http://127.0.0.1:5000/video_feed/540/380">
     </p>    
@@ -102,19 +93,6 @@
         xhttp.send();
     }
 
-    function gps() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4) {
-                if (this.status == 200) {
-                    console.log(this.responseText)
-                    document.getElementById("GPS_display").innerHTML = this.responseText
-                }
-            }
-        };
-        xhttp.open("GET", "/Getgps", true);
-        xhttp.send();
-    }
 
     function SetBearing() {
         lat = document.getElementById("ToLat").value;
