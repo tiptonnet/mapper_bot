@@ -10,7 +10,7 @@ import numpy as np
 import sys
 import time
 
-class SendCommands(Node):
+class ReadingCommands(Node):
 
     def __init__(self,args):
         self.args = args
@@ -21,15 +21,8 @@ class SendCommands(Node):
         qos_profile = QoSProfile(depth=10)
         qos_profile.reliability = QoSReliabilityPolicy.BEST_EFFORT
         qos_profile.durability = QoSDurabilityPolicy.VOLATILE
-        #self.subscription= self.create_subscription(
-        #    LaserScan,
-        #    '/scan',
-        #    self.listener_callback,
-        #    qos_profile=qos_profile_sensor_data,
-        #)
 
-
-    def set_vel(self, vx, vy, vz, avx=0, avy=0, avz=0):
+    def set_vel(self, vx, vy, vz, avx=0.0, avy=0.0, avz=0.0):
             """
             Send comand velocities. Must be in GUIDED mode. Assumes angular
             velocities are zero by default.
@@ -46,6 +39,9 @@ class SendCommands(Node):
 
             self.publisher_.publish(cmd_vel)
     
+    def GetCommand(self, vx, vy, vz, avx=0.0, avy=0.0, avz=0.0):
+        self.set_vel(vx, vy, vz, avx, avy, avz)
+
 def main(args=None):
     if len(sys.argv) < 2:
         sim=False
@@ -53,7 +49,7 @@ def main(args=None):
         sim = sys.argv[1]
     #print(sim)
     rclpy.init()
-    reading_commands = SendCommands(sim)                  
+    reading_commands = ReadingCommands(sim)                  
     rclpy.spin(reading_commands)
 
     # Destroy the node explicitly

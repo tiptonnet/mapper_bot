@@ -12,7 +12,7 @@ import numpy as np
 import sys
 import time
 import os 
-from commands import SendCommands
+from commands import ReadingCommands
 
 app = Flask(__name__)
 
@@ -36,23 +36,21 @@ def video_feed(w,h):
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-
-
-
 @app.route('/command/<int:a>', methods=["GET"])
 def Test(a):
+    ReadingCommands.__init__
     print("Executing command: "+str(a))
     if a == 0: # Forward
-        SendCommands.set_vel(1.0, 0.0, 0.0, 0.0, 0.0,0.0)
+        ReadingCommands.GetCommand(ReadingCommands,1.0, 0.0, 0.0, avx=0.0, avy=0.0, avz=0.0)
         #set_vel(1.0, 0.0, 0.0, 0.0, 0.0,0.0)
     if a == 2: #Left
-        set_vel(0.0, 0.0, 0.0, 0.0, 0.0,1)
+        ReadingCommands.GetCommand(0.0, 0.0, 0.0, 0.0, 0.0,1)
     if a == 3: #Right
-        set_vel(0.0, 0.0, 0.0, 0.0, 0.0,-1)
+        ReadingCommands.GetCommand(0.0, 0.0, 0.0, 0.0, 0.0,-1)
     if a == 6: #Stop
-        set_vel(0.0, 0.0, 0.0, 0.0, 0.0,0)
+        ReadingCommands.GetCommand(0.0, 0.0, 0.0, 0.0, 0.0,0)
     if a == 1: #Reverse
-        set_vel(-1.0, 0.0, 0.0, 0.0, 0.0,0)
+        ReadingCommands.GetCommand(-1.0, 0.0, 0.0, 0.0, 0.0,0)
 
     return "OK"
 
