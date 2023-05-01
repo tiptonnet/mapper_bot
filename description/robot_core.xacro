@@ -675,9 +675,9 @@
         <axis xyz="0 1 0" />
         <origin rpy="0 0 0" xyz="0.2259 0 0.0438" />
         <parent link="chassis"/>
-        <child link="sonar_front"/>
+        <child link="base_sonar_front"/>
     </joint>
-    <link name="sonar_front">
+    <link name="base_sonar_front">
         <collision>
         <origin xyz="0.001975 0 0.0038" rpy="0 0 0"/>
         <geometry>
@@ -696,7 +696,7 @@
         <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
         </inertial>
     </link>
-    <gazebo reference="sonar_front">        
+    <gazebo reference="base_sonar_front">        
         <sensor type="ray" name="TeraRanger">
             <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
