@@ -115,9 +115,10 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
-    <gazebo reference="chassis">
+    <gazebo reference="body">
         <material>Gazebo/White</material>
     </gazebo>
+
 
     <!-- LEFT WHEEL LINK -->
 
@@ -670,14 +671,14 @@
         </sensor>  
     </gazebo>
 
-     <!--SONAR BASE FRONT--> 
-    <joint name="sonar_front_joint" type="fixed">
+     <!--SONAR TOP LEFT FRONT--> 
+    <joint name="sonar_left_top_joint" type="fixed">
         <axis xyz="0 1 0" />
-        <origin rpy="0 0 0" xyz="0.2259 0 0.0438" />
+        <origin rpy="0 0 0.60" xyz="0.193 0.12 0.09" />
         <parent link="chassis"/>
-        <child link="base_sonar_front"/>
+        <child link="base_sonar_left_top"/>
     </joint>
-    <link name="base_sonar_front">
+    <link name="base_sonar_left_top">
         <collision>
         <origin xyz="0.001975 0 0.0038" rpy="0 0 0"/>
         <geometry>
@@ -696,7 +697,7 @@
         <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
         </inertial>
     </link>
-    <gazebo reference="base_sonar_front">        
+    <gazebo reference="base_sonar_left_top">        
         <sensor type="ray" name="TeraRanger">
             <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
@@ -726,7 +727,7 @@
                 <gaussianNoise>0.005</gaussianNoise>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50</updateRate>
-                <topicName>sensor_msgs/range_front</topicName>
+                <topicName>sensor_msgs/range_left_top</topicName>
                 <frameName>sonar_base</frameName>
                 <radiation>ultrasound</radiation>
                 <fov>0.2967</fov>
@@ -735,13 +736,13 @@
     </gazebo>
 
 <!-- LEFT SONAR --> 
-    <joint name="sonar_left_joint" type="fixed">
+    <joint name="sonar_left_bottom_joint" type="fixed">
         <axis xyz="0 1 0" />
-        <origin rpy="0 0 1.57" xyz="0 0.2259 0.0438" />
+        <origin rpy="0 0 0.60" xyz="0.18 0.14 0.00001" />
         <parent link="chassis"/>
-        <child link="base_sonar_left"/>
+        <child link="base_sonar_left_bottom"/>
     </joint>
-    <link name="base_sonar_left">
+    <link name="base_sonar_left_bottom">
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -760,7 +761,7 @@
         <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
         </inertial>
     </link>
-    <gazebo reference="base_sonar_left">        
+    <gazebo reference="base_sonar_left_bottom">        
         <sensor type="ray" name="TeraRanger">
             <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
@@ -790,7 +791,7 @@
                 <gaussianNoise>0.005</gaussianNoise>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50</updateRate>
-                <topicName>sensor_msgs/range_left</topicName>
+                <topicName>sensor_msgs/range_left_bottom</topicName>
                 <frameName>sonar_base</frameName>
                 <radiation>ultrasound</radiation>
                 <fov>0.2967</fov>
@@ -799,13 +800,13 @@
     </gazebo>
 
 <!-- RIGHT SONAR  -->
-    <joint name="sonar_right_joint" type="fixed">
+    <joint name="sonar_right_top_joint" type="fixed">
         <axis xyz="0 1 0" />
-        <origin rpy="0 0 -1.57" xyz="0 -0.2259 0.0438" />
+        <origin rpy="0 0 -0.60" xyz="0.193 -0.12 0.09" />
         <parent link="chassis"/>
-        <child link="base_sonar_right"/>
+        <child link="base_sonar_right_top"/>
     </joint>
-    <link name="base_sonar_right">
+    <link name="base_sonar_right_top">
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -824,7 +825,7 @@
         <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
         </inertial>
     </link>
-    <gazebo reference="base_sonar_right">        
+    <gazebo reference="base_sonar_right_top">        
         <sensor type="ray" name="TeraRanger">
             <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
@@ -854,7 +855,7 @@
                 <gaussianNoise>0.005</gaussianNoise>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50</updateRate>
-                <topicName>sensor_msgs/range_right</topicName>
+                <topicName>sensor_msgs/range_right_top</topicName>
                 <frameName>sonar_base</frameName>
                 <radiation>ultrasound</radiation>
                 <fov>0.2967</fov>
@@ -863,13 +864,13 @@
     </gazebo>
 
 <!-- REAR SONAR  --> 
-    <joint name="sonar_rear_joint" type="fixed">
+    <joint name="sonar_right_bottom_joint" type="fixed">
         <axis xyz="0 1 0" />
-        <origin rpy="0 0 -3.14" xyz="-0.227 0 0.0438" />
+        <origin rpy="0 0 -0.60" xyz="0.18 -0.14 0.00001" />
         <parent link="chassis"/>
-        <child link="base_sonar_rear"/>
+        <child link="base_sonar_right_bottom"/>
     </joint>
-    <link name="base_sonar_rear">
+    <link name="base_sonar_right_bottom">
         <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -888,7 +889,7 @@
         <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
         </inertial>
     </link>
-    <gazebo reference="base_sonar_rear">        
+    <gazebo reference="base_sonar_right_bottom">        
         <sensor type="ray" name="TeraRanger">
             <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
@@ -918,12 +919,9 @@
                 <gaussianNoise>0.005</gaussianNoise>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50</updateRate>
-                <ros>
-                    <remapping>~/out:=ultrasonic_sensor_10</remapping>
-                </ros>
-                <output_type>sensor_msgs/Range</output_type>
+                <output_type>sensor_msgs/range_right_bottom</output_type>
                 <radiation_type>ultrasound</radiation_type>
-                <frame_name>base_sonar_rear</frame_name>
+                <frame_name>sonar_base</frame_name>
                 <fov>0.2967</fov>
             </plugin>
         </sensor>  
