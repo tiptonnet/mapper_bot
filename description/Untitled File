@@ -1,0 +1,384 @@
+    <!-- TOP SONAR --> 
+
+    <!--SONAR 1--> 
+    <joint name="sonar_front_1_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.671" />
+        <parent link="chassis"/>
+        <child link="sonar_top_1"/>
+    </joint>
+    <link name="sonar_top_1">
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </visual>
+        <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+    <gazebo reference="sonar_top_1">        
+    <sensor type="ray" name="TeraRanger">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>50</update_rate>
+        <ray>
+            <scan>
+                <horizontal>
+                <samples>10</samples>
+                <resolution>1</resolution> 
+                <min_angle>-0.14835</min_angle>
+                <max_angle>0.14835</max_angle>
+                </horizontal>
+                <vertical>
+                <samples>10</samples>
+                <resolution>1</resolution> 
+                <min_angle>-0.14835</min_angle>
+                <max_angle>0.14835</max_angle> 
+                </vertical>
+            </scan>
+            <range>
+                <min>0.01</min>
+                <max>2</max>
+                <resolution>0.02</resolution>
+            </range>
+        </ray>
+        <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+            <gaussianNoise>0.005</gaussianNoise>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>50</updateRate>
+            <topicName>sensor/Range</topicName>
+            <frameName>sonar_top_1</frameName>
+            <radiation>INFRARED</radiation>
+            <fov>0.2967</fov>
+        </plugin>
+    </sensor>  
+    </gazebo>
+     <!--SONAR 2--> 
+    <joint name="sonar_front_2_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.5948" />
+        <parent link="chassis"/>
+        <child link="sonar_top_2"/>
+    </joint>
+    <link name="sonar_top_2">
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </visual>
+        <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+    <gazebo reference="sonar_top_2">        
+        <sensor type="ray" name="TeraRanger">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>50</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle>
+                    </horizontal>
+                    <vertical>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle> 
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>2</max>
+                    <resolution>0.02</resolution>
+                </range>
+            </ray>
+            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_2">
+                <gaussianNoise>0.005</gaussianNoise>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50</updateRate>
+                <topicName>sensor_msgs/range_2</topicName>
+                <frameName>sonar_top_2</frameName>
+                <radiation>ultrasound</radiation>
+                <fov>0.2967</fov>
+            </plugin>
+        </sensor>  
+    </gazebo>
+
+     <!--SONAR 3--> 
+    <joint name="sonar_front_3_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.5186" />
+        <parent link="chassis"/>
+        <child link="sonar_top_3"/>
+    </joint>
+    <link name="sonar_top_3">
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </visual>
+        <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+    <gazebo reference="sonar_top_3">        
+        <sensor type="ray" name="TeraRanger">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>50</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle>
+                    </horizontal>
+                    <vertical>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle> 
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>2</max>
+                    <resolution>0.02</resolution>
+                </range>
+            </ray>
+            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_3">
+                <gaussianNoise>0.005</gaussianNoise>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50</updateRate>
+                <topicName>sensor_msgs/range_3</topicName>
+                <frameName>sonar_top</frameName>
+                <radiation>ultrasound</radiation>
+                <fov>0.2967</fov>
+            </plugin>
+        </sensor>  
+    </gazebo>
+
+     <!--SONAR 4--> 
+    <joint name="sonar_front_4_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.4424" />
+        <parent link="chassis"/>
+        <child link="sonar_top_4"/>
+    </joint>
+    <link name="sonar_top_4">
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </visual>
+        <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+    <gazebo reference="sonar_top_4">        
+        <sensor type="ray" name="TeraRanger">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>50</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle>
+                    </horizontal>
+                    <vertical>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle> 
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>2</max>
+                    <resolution>0.02</resolution>
+                </range>
+            </ray>
+            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_4">
+                <gaussianNoise>0.005</gaussianNoise>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50</updateRate>
+                <topicName>sensor_msgs/range_4</topicName>
+                <frameName>sonar_top</frameName>
+                <radiation>ultrasound</radiation>
+                <fov>0.2967</fov>
+            </plugin>
+        </sensor>  
+    </gazebo>
+
+     <!--SONAR 5--> 
+    <joint name="sonar_front_5_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.3662" />
+        <parent link="chassis"/>
+        <child link="sonar_top_5"/>
+    </joint>
+    <link name="sonar_top_5">
+        <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </visual>
+        <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+    <gazebo reference="sonar_top_5">        
+        <sensor type="ray" name="TeraRanger">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>50</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle>
+                    </horizontal>
+                    <vertical>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle> 
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>2</max>
+                    <resolution>0.02</resolution>
+                </range>
+            </ray>
+            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_5">
+                <gaussianNoise>0.005</gaussianNoise>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50</updateRate>
+                <topicName>sensor_msgs/range_5</topicName>
+                <frameName>sonar_top</frameName>
+                <radiation>ultrasound</radiation>
+                <fov>0.2967</fov>
+            </plugin>
+        </sensor>  
+    </gazebo>
+
+     <!--SONAR 6--> 
+    <joint name="sonar_front_6_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0.15 0 0.29" />
+        <parent link="chassis"/>
+        <child link="sonar_top_6"/>
+    </joint>
+    <link name="sonar_top_6">
+        <collision>
+        <origin xyz="0.15 0 0.29" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </collision>
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.01 0.01 0.01"/>
+        </geometry>
+        </visual>
+        <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+    <gazebo reference="sonar_top_6">        
+        <sensor type="ray" name="TeraRanger">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>50</update_rate>
+            <ray>
+                <scan>
+                    <horizontal>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle>
+                    </horizontal>
+                    <vertical>
+                    <samples>10</samples>
+                    <resolution>1</resolution> 
+                    <min_angle>-0.14835</min_angle>
+                    <max_angle>0.14835</max_angle> 
+                    </vertical>
+                </scan>
+                <range>
+                    <min>0.01</min>
+                    <max>2</max>
+                    <resolution>0.02</resolution>
+                </range>
+            </ray>
+            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_6">
+                <gaussianNoise>0.005</gaussianNoise>
+                <alwaysOn>true</alwaysOn>
+                <updateRate>50</updateRate>
+                <topicName>sensor_msgs/range_6</topicName>
+                <frameName>sonar_top</frameName>
+                <radiation>ultrasound</radiation>
+                <fov>0.2967</fov>
+            </plugin>
+        </sensor>  
+    </gazebo>
