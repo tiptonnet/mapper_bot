@@ -186,7 +186,6 @@
         <origin xyz="0.14 0 0.0026" rpy="0 0 0" />
         <axis xyz="0 0 1"/>
     </joint>
-
     <link name="front_caster_swivel">
         <visual>
             <geometry>
@@ -203,13 +202,18 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="front_caster_swivel">
+        <material>Gazebo/Blue</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
+
     <joint name="front_caster_wheel_joint" type="continuous">
         <parent link="front_caster_swivel"/>
         <child link="front_caster_wheel"/>
         <origin xyz="0 0 0" rpy="1.57075 0 0" />
         <axis xyz="0 0 -1"/>
     </joint>
-
     <link name="front_caster_wheel">
         <visual>
             <geometry>
@@ -240,7 +244,6 @@
         <origin xyz="-0.142875 0 0.0026" rpy="0 0 0" />
         <axis xyz="0 0 1"/>
     </joint>
-
     <link name="rear_caster_swivel">
         <visual>
             <geometry>
@@ -257,13 +260,18 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
+    <gazebo reference="rear_caster_swivel">
+        <material>Gazebo/Blue</material>
+        <mu1 value="0.001"/>
+        <mu2 value="0.001"/>
+    </gazebo>
+
     <joint name="rear_caster_wheel_joint" type="continuous">
         <parent link="rear_caster_swivel"/>
         <child link="rear_caster_wheel"/>
         <origin xyz="0 0 0" rpy="1.57075 0 0" />
         <axis xyz="0 0 -1"/>
     </joint>
-
     <link name="rear_caster_wheel">
         <visual>
             <geometry>
@@ -280,7 +288,7 @@
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
-    <gazebo reference="caster_wheel">
+    <gazebo reference="rear_caster_wheel">
         <material>Gazebo/Blue</material>
         <mu1 value="0.001"/>
         <mu2 value="0.001"/>
@@ -338,7 +346,7 @@
                     <resolution>0.02</resolution>
                 </range>
             </ray>
-            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_7">
+            <plugin filename="libgazebo_ros_range.so" name="base_sonar_left_top">
                 <gaussianNoise>0.005</gaussianNoise>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50</updateRate>
@@ -402,7 +410,7 @@
                     <resolution>0.02</resolution>
                 </range>
             </ray>
-            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_8">
+            <plugin filename="libgazebo_ros_range.so" name="base_sonar_left_bottom">
                 <gaussianNoise>0.005</gaussianNoise>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50</updateRate>
@@ -466,7 +474,7 @@
                     <resolution>0.02</resolution>
                 </range>
             </ray>
-            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_9">
+            <plugin filename="libgazebo_ros_range.so" name="base_sonar_right_top">
                 <gaussianNoise>0.005</gaussianNoise>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50</updateRate>
@@ -530,7 +538,7 @@
                     <resolution>0.02</resolution>
                 </range>
             </ray>
-            <plugin filename="libgazebo_ros_range.so" name="ultrasonic_sensor_10">
+            <plugin filename="libgazebo_ros_range.so" name="base_sonar_right_bottom">
                 <gaussianNoise>0.005</gaussianNoise>
                 <alwaysOn>true</alwaysOn>
                 <updateRate>50</updateRate>
